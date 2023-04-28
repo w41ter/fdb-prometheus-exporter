@@ -78,11 +78,9 @@ func main() {
 			//Call the periodic function here.
 			models, err := retrieveMetrics()
 			if err != nil {
-				fmt.Errorf("cannot retrieve metrics from FDB: (%v)", err)
+				fmt.Printf("cannot retrieve metrics from FDB: (%v)\n", err)
 				continue
 			}
-
-			fmt.Println("retrieved data")
 
 			if exportWorkload {
 				models.ExportWorkload()
