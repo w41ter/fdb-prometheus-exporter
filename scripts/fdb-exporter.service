@@ -1,0 +1,19 @@
+[Unit]
+Description=FoundationDB Prometheus Exporter
+After=network.target network-online.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+User=
+ExecStart=/opt/fdb-exporter/bin/start.sh
+ExecStop=/opt/fdb-exporter/bin/stop.sh
+KillSignal=2
+Restart=on-failure
+RestartSec=15
+StartLimitInterval=3600
+StartLimitBurst=5
+LimitNOFILE=1000000
+LimitCORE=infinity:infinity
+
+[Install]
+WantedBy=multi-user.target
